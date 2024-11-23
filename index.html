@@ -5,22 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Libro Virtual</title>
   <link rel="stylesheet" href="css/estilos.css">
-  <meta name="viewport" content="width=1024, initial-scale=1">
-
 </head>
 <body>
   <!-- Barra de miniaturas -->
   <header class="thumbnail-bar">
-    <button id="prev-thumbnails" class="header-nav-btn" onclick="navigateThumbnails(-1)">&#9664;</button>
+    <button id="prev-thumbnails" class="header-nav-btn" onclick="navigateThumbnails(-1)" aria-label="Navegar a la izquierda en las miniaturas">&#9664;</button>
     <div class="thumbnails-container"></div>
-    <button id="next-thumbnails" class="header-nav-btn" onclick="navigateThumbnails(1)">&#9654;</button>
+    <button id="next-thumbnails" class="header-nav-btn" onclick="navigateThumbnails(1)" aria-label="Navegar a la derecha en las miniaturas">&#9654;</button>
   </header>
 
   <!-- Visor de imagen principal -->
   <main class="image-viewer">
-    <button id="prev-image" class="nav-btn" onclick="navigate(-1)">&#9664;</button>
-    <img id="main-image" src="img/1.png" alt="Imagen Principal">
-    <button id="next-image" class="nav-btn" onclick="navigate(1)">&#9654;</button>
+    <button id="prev-image" class="nav-btn" onclick="navigate(-1)" aria-label="Navegar a la imagen anterior">&#9664;</button>
+    <img id="main-image" src="img/1.png" alt="Imagen principal - Vista completa">
+    <button id="next-image" class="nav-btn" onclick="navigate(1)" aria-label="Navegar a la siguiente imagen">&#9654;</button>
   </main>
 
   <script src="js/jsf.js"></script>
