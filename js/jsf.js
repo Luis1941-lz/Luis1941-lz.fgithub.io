@@ -49,14 +49,37 @@ function navigateThumbnails(direction) {
   renderThumbnails();
 }
 
+// Agregar funcionalidad táctil (Swipe) para móviles
+let startX = 0;
+let endX = 0;
+
+// Detectar inicio del toque
+document.getElementById("main-image").addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+// Detectar fin del toque y navegar
+document.getElementById("main-image").addEventListener("touchend", (e) => {
+  endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    // Deslizar hacia la izquierda
+    navigate(1);
+  } else if (endX - startX > 50) {
+    // Deslizar hacia la derecha
+    navigate(-1);
+  }
+});
+
 // Inicializar la vista
 document.addEventListener("DOMContentLoaded", () => {
   renderThumbnails();
   showImage(0);
-  
+
   // Agregar los eventos de navegación de miniaturas
   document.getElementById("prev-thumbnails").addEventListener("click", () => navigateThumbnails(-1));
   document.getElementById("next-thumbnails").addEventListener("click", () => navigateThumbnails(1));
+
   // Agregar los eventos de navegación de la imagen principal
   document.getElementById("prev-image").addEventListener("click", () => navigate(-1));
   document.getElementById("next-image").addEventListener("click", () => navigate(1));
