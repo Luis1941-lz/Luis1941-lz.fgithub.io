@@ -1,13 +1,24 @@
-// Array de imágenes con rutas relativas (eliminamos la imagen 22)
+// Array de imágenes con rutas relativas
 const images = Array.from({ length: 21 }, (_, i) => `img/${i + 1}.png`);
 let currentIndex = 0; // Índice de la imagen principal
 let thumbnailIndex = 0; // Índice del primer thumbnail visible
 const thumbnailsPerPage = 7; // Cantidad de miniaturas visibles
 
-// Mostrar la imagen seleccionada
+// Mostrar la imagen seleccionada con transición
 function showImage(index) {
-  currentIndex = index;
-  document.getElementById("main-image").src = images[currentIndex];
+  const mainImage = document.getElementById("main-image");
+  mainImage.classList.add("hidden"); // Agregar la clase 'hidden' para ocultar la imagen con transición
+
+  // Esperar a que la imagen se oculte antes de cambiarla
+  setTimeout(() => {
+    currentIndex = index;
+    mainImage.src = images[currentIndex]; // Cambiar la imagen principal
+
+    // Esperar un momento para mostrar la nueva imagen con la transición
+    setTimeout(() => {
+      mainImage.classList.remove("hidden"); // Eliminar la clase 'hidden' para mostrar la imagen
+    }, 10);
+  }, 500); // Tiempo de espera para la transición
 }
 
 // Navegar entre imágenes principales
@@ -28,7 +39,8 @@ function renderThumbnails() {
 
     const img = document.createElement("img");
     img.src = images[i];
-    img.alt = `Foto ${i + 1}`;
+    img.alt = `Imagen ${i + 1} - Vista previa`; // Alt más descriptivo
+    img.loading = "lazy"; // Activar carga diferida para mejorar el rendimiento
     div.appendChild(img);
 
     const number = document.createElement("div");
@@ -49,38 +61,8 @@ function navigateThumbnails(direction) {
   renderThumbnails();
 }
 
-// Agregar funcionalidad táctil (Swipe) para móviles
-let startX = 0;
-let endX = 0;
-
-// Detectar inicio del toque
-document.getElementById("main-image").addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
-
-// Detectar fin del toque y navegar
-document.getElementById("main-image").addEventListener("touchend", (e) => {
-  endX = e.changedTouches[0].clientX;
-
-  if (startX - endX > 50) {
-    // Deslizar hacia la izquierda
-    navigate(1);
-  } else if (endX - startX > 50) {
-    // Deslizar hacia la derecha
-    navigate(-1);
-  }
-});
-
 // Inicializar la vista
 document.addEventListener("DOMContentLoaded", () => {
   renderThumbnails();
   showImage(0);
-
-  // Agregar los eventos de navegación de miniaturas
-  document.getElementById("prev-thumbnails").addEventListener("click", () => navigateThumbnails(-1));
-  document.getElementById("next-thumbnails").addEventListener("click", () => navigateThumbnails(1));
-
-  // Agregar los eventos de navegación de la imagen principal
-  document.getElementById("prev-image").addEventListener("click", () => navigate(-1));
-  document.getElementById("next-image").addEventListener("click", () => navigate(1));
 });
