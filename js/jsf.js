@@ -1,5 +1,5 @@
-// Array de imágenes con rutas relativas
-const images = Array.from({ length: 22 }, (_, i) => `img/${i + 1}.png`);
+// Array de imágenes con rutas relativas (eliminamos la imagen 22)
+const images = Array.from({ length: 21 }, (_, i) => `img/${i + 1}.png`);
 let currentIndex = 0; // Índice de la imagen principal
 let thumbnailIndex = 0; // Índice del primer thumbnail visible
 const thumbnailsPerPage = 7; // Cantidad de miniaturas visibles
