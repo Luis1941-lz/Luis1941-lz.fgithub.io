@@ -5,10 +5,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    scrollbar-width: none;
-    overflow-x: hidden; /* Evita el desbordamiento horizontal */
-    overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
     background-color: bisque;
+    overflow-y: auto; /* Permite desplazamiento vertical */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
 /* Barra de miniaturas */
@@ -18,12 +17,13 @@ body {
     gap: 10px;
     background-color: #f0f0f0;
     padding: 10px;
-    width: 100%;
+    width: 100%; /* Ocupa el ancho completo de la pantalla */
     justify-content: center;
     overflow-x: auto; /* Permite desplazamiento horizontal solo si es necesario */
+    max-width: 1024px; /* Máximo ancho para computadoras */
 }
 
-/* Estilos para los botones de navegación */
+/* Botones de navegación de miniaturas */
 .header-nav-btn {
     background-color: #007BFF;
     color: white;
@@ -42,20 +42,19 @@ body {
 .thumbnails-container {
     display: flex;
     gap: 10px;
-    width: auto; /* Ajuste para permitir que las miniaturas se ajusten según el contenido */
     justify-content: center;
     flex-wrap: wrap; /* Permite que las miniaturas se acomoden en varias filas */
+    max-width: 100%;
 }
 
-/* Estilo individual de cada miniatura */
+/* Miniatura individual */
 .thumbnail {
     position: relative;
     text-align: center;
     display: inline-block;
-    margin-bottom: 10px; /* Añadí espacio entre las miniaturas cuando se apilan */
+    margin-bottom: 10px;
 }
 
-/* Ajuste del tamaño de la miniatura */
 .thumbnail img {
     width: 80px;
     height: 80px;
@@ -66,12 +65,11 @@ body {
     transition: border-color 0.3s ease;
 }
 
-/* Número debajo de la miniatura */
 .thumbnail-number {
     font-size: 14px;
     font-weight: bold;
     color: #333;
-    margin-top: 5px; /* Añadí un pequeño margen superior */
+    margin-top: 5px;
 }
 
 /* Visor de imagen principal */
@@ -81,18 +79,19 @@ body {
     margin-top: 20px;
     width: 100%;
     justify-content: center;
-    overflow: hidden; /* Asegura que no haya barras de desplazamiento */
+    max-width: 1024px; /* Ancho máximo para computadoras */
+    overflow: hidden;
 }
 
-/* Estilo de la imagen principal */
 .image-viewer img {
-    width: 600px;
-    height: auto;
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    max-width: 600px; /* Ancho máximo para computadoras */
+    height: auto; /* Mantiene las proporciones */
     border: 2px solid #ccc;
     border-radius: 10px;
 }
 
-/* Botones de navegación de la imagen principal */
+/* Botones de navegación en el visor principal */
 .nav-btn {
     background-color: #007BFF;
     color: white;
@@ -111,38 +110,30 @@ body {
 /* Media Queries para adaptación a móviles */
 @media (max-width: 768px) {
     /* Ajustar la barra de miniaturas */
-    .thumbnails-container {
-        width: 100%;
-        justify-content: center;
-    }
-  
     .thumbnail img {
         width: 60px;
         height: 60px;
     }
   
-    /* Ajustar la imagen principal para pantallas más pequeñas */
+    /* Ajustar la imagen principal */
     .image-viewer img {
-        width: 90%; /* Ajusta la imagen para ocupar el 90% del ancho disponible */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: none;
     }
   
     .header-nav-btn,
     .nav-btn {
-        font-size: 16px; /* Reducir el tamaño de los botones */
+        font-size: 16px; /* Reducir tamaño de los botones */
         padding: 8px 15px;
     }
   
-    .thumbnail-bar {
-        padding: 10px 0;
-    }
-  
     .thumbnail-number {
-        font-size: 12px; /* Reducir el tamaño del número debajo de la miniatura */
+        font-size: 12px; /* Reducir tamaño del texto en miniaturas */
     }
 }
 
 @media (max-width: 480px) {
-    /* Cambiar la cantidad de miniaturas visibles en pantallas muy pequeñas */
+    /* Cambiar las miniaturas para pantallas muy pequeñas */
     .thumbnails-container {
         width: 100%;
         flex-direction: column; /* Mostrar las miniaturas en columna */
@@ -150,7 +141,7 @@ body {
     }
   
     .thumbnail {
-        margin-bottom: 10px; /* Espacio entre miniaturas cuando se apilan verticalmente */
+        margin-bottom: 10px; /* Espacio entre miniaturas en columna */
     }
   
     .thumbnail img {
@@ -158,14 +149,15 @@ body {
         height: 50px;
     }
   
+    /* Ajustar la imagen principal aún más */
     .image-viewer img {
-        width: 100%; /* La imagen principal ocupa todo el ancho disponible */
+        width: 100%; /* La imagen ocupa todo el ancho disponible */
         height: auto;
     }
   
     .header-nav-btn,
     .nav-btn {
-        font-size: 14px;
+        font-size: 14px; /* Reducir aún más los botones */
         padding: 8px 12px;
     }
 }
