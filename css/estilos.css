@@ -44,7 +44,7 @@ body {
     gap: 10px;
     width: auto; /* Ajuste para permitir que las miniaturas se ajusten según el contenido */
     justify-content: center;
-    flex-wrap: nowrap; /* No permitir que las miniaturas se acomoden en varias filas */
+    flex-wrap: wrap; /* Permite que las miniaturas se acomoden en varias filas */
 }
 
 /* Estilo individual de cada miniatura */
@@ -52,8 +52,10 @@ body {
     position: relative;
     text-align: center;
     display: inline-block;
+    margin-bottom: 10px; /* Añadí espacio entre las miniaturas cuando se apilan */
 }
 
+/* Ajuste del tamaño de la miniatura */
 .thumbnail img {
     width: 80px;
     height: 80px;
@@ -64,13 +66,8 @@ body {
     transition: border-color 0.3s ease;
 }
 
-.thumbnail img:hover {
-    border-color: #007BFF;
-}
-
 /* Número debajo de la miniatura */
 .thumbnail-number {
-    position: relative; /* Cambié de absolute a relative */
     font-size: 14px;
     font-weight: bold;
     color: #333;
@@ -139,16 +136,11 @@ body {
         padding: 10px 0;
     }
   
-    /* Ajustar los botones de navegación para que no ocupen tanto espacio */
-    .nav-btn {
-        padding: 10px 15px;
-    }
-  
     .thumbnail-number {
         font-size: 12px; /* Reducir el tamaño del número debajo de la miniatura */
     }
 }
-  
+
 @media (max-width: 480px) {
     /* Cambiar la cantidad de miniaturas visibles en pantallas muy pequeñas */
     .thumbnails-container {
@@ -171,7 +163,6 @@ body {
         height: auto;
     }
   
-    /* Ajuste de la barra de miniaturas y botones en pantallas muy pequeñas */
     .header-nav-btn,
     .nav-btn {
         font-size: 14px;
