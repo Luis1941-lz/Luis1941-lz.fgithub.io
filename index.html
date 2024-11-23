@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libro Virtual</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <!-- Barra de miniaturas -->
+  <header class="thumbnail-bar">
+    <button class="header-nav-btn" onclick="navigateThumbnails(-1)">&#9664;</button>
+    <div class="thumbnails-container"></div>
+    <button class="header-nav-btn" onclick="navigateThumbnails(1)">&#9654;</button>
+  </header>
+
+  <!-- Visor de imagen principal -->
+  <main class="image-viewer">
+    <button class="nav-btn" onclick="navigate(-1)">&#9664;</button>
+    <img id="main-image" src="img/1.png" alt="Imagen Principal">
+    <button class="nav-btn" onclick="navigate(1)">&#9654;</button>
+  </main>
+  <script src="js/jsf.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+// Array de imágenes con ruta relativa
+const images = Array.from({ length: 22 }, (_, i) => `img/${i + 1}.png`);
+let currentIndex = 0; // Índice de la imagen principal
+let thumbnailIndex = 0; // Índice del primer thumbnail visible
+const thumbnailsPerPage = 7; // Cantidad de miniaturas visibles
+
+// Mostrar la imagen seleccionada
+function showImage(index) {
+  currentIndex = index;
+  document.getElementById("main-image").src = images[currentIndex];
+}
+
+// Navegar entre imágenes principales
+function navigate(direction) {
+  currentIndex = (currentIndex + direction + images.length) % images.length;
+  showImage(currentIndex);
+}
+
+// Renderizar miniaturas visibles
+function renderThumbnails() {
+  const thumbnailsContainer = document.querySelector(".thumbnails-container");
+  thumbnailsContainer.innerHTML = ""; // Limpiar miniaturas
+
+  // Generar miniaturas visibles
+  for (let i = thumbnailIndex; i < thumbnailIndex + thumbnailsPerPage && i < images.length; i++) {
+    const div = document.createElement("div");
+    div.classList.add("thumbnail");
+    div.onclick = () => showImage(i);
+
+    const img = document.createElement("img");
+    img.src = images[i];
+    img.alt = `Foto ${i + 1}`;
+    div.appendChild(img);
+
+    thumbnailsContainer.appendChild(div);
+  }
+
+  // Verificar si el contenedor tiene hijos
+  if (!thumbnailsContainer.children.length) {
+    console.error("No se generaron miniaturas. Revisa las rutas o el array de imágenes.");
+  }
+}
+
+// Navegar entre páginas de miniaturas
+function navigateThumbnails(direction) {
+  const maxIndex = Math.max(0, images.length - thumbnailsPerPage);
+  thumbnailIndex = Math.min(Math.max(thumbnailIndex + direction * thumbnailsPerPage, 0), maxIndex);
+  renderThumbnails();
+}
+
+// Inicializar miniaturas
+document.addEventListener("DOMContentLoaded", () => {
+  renderThumbnails();
+  showImage(0); // Mostrar la primera imagen por defecto
+});
