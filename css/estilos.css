@@ -83,19 +83,12 @@ body {
     overflow: hidden;
 }
 
-/* Transición suave para la imagen principal */
 .image-viewer img {
     width: 90%; /* Ocupa el 90% del ancho disponible */
     max-width: 600px; /* Ancho máximo para computadoras */
     height: auto; /* Mantiene las proporciones */
     border: 2px solid #ccc;
     border-radius: 10px;
-    transition: opacity 0.5s ease-in-out; /* Añadir transición suave */
-}
-
-/* Añadir clase para ocultar la imagen durante el cambio */
-.image-viewer img.hidden {
-    opacity: 0;
 }
 
 /* Botones de navegación en el visor principal */
@@ -137,6 +130,13 @@ body {
     .thumbnail-number {
         font-size: 12px; /* Reducir tamaño del texto en miniaturas */
     }
+
+    /* Cambiar la disposición de las miniaturas para pantallas más pequeñas */
+    .thumbnails-container {
+        flex-direction: column; /* Mostrar las miniaturas en columna */
+        align-items: center; /* Centrar miniaturas */
+        gap: 5px; /* Menor espacio entre las miniaturas */
+    }
 }
 
 @media (max-width: 480px) {
@@ -168,8 +168,3 @@ body {
         padding: 8px 12px;
     }
 }
-
-
-
-
-
